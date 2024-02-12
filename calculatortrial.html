@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <div id="eqnInput" contenteditable = True style = "border: 1px solid black; width: 207px; padding: 1px"></div><br>
+            <button id="enter1" style="width: 50px; height: 50px"  onclick="typein('1')">1</button>
+            <button id="enter2" style="width: 50px; height: 50px"  onclick="typein('2')">2</button>
+            <button id="enter3" style="width: 50px; height: 50px"  onclick="typein('3')">3</button>
+            <button id="enterplus" style="width: 50px; height: 50px"  onclick="typein('+')">+</button><br>
+            <button id="enter4" style="width: 50px; height: 50px"  onclick="typein('4')">4</button>
+            <button id="enter5" style="width: 50px; height: 50px"  onclick="typein('5')">5</button>
+            <button id="enter6" style="width: 50px; height: 50px"  onclick="typein('6')">6</button>
+            <button id="enterminus" style="width: 50px; height: 50px"  onclick="typein('-')">-</button><br>
+            <button id="enter7" style="width: 50px; height: 50px"  onclick="typein('7')">7</button>
+            <button id="enter8" style="width: 50px; height: 50px"  onclick="typein('8')">8</button>
+            <button id="enter9" style="width: 50px; height: 50px"  onclick="typein('9')">9</button>
+            <button id="entermultip" style="width: 50px; height: 50px"  onclick="typein('*')">*</button><br>
+            <button id="backspace" style="width: 50px; height: 50px"  onclick="backspace()">AC</button>
+            <button id="enter0" style="width: 50px; height: 50px"  onclick="typein('0')">0</button>
+            <button id="enterdot"n style="width: 50px; height: 50px"  onclick="typein('.')">.</button>
+            <button id="enterdivs" style="width: 50px; height: 50px"  onclick="typein('/')">/</button><br>  
+            <button id="del" style="width: 50px; height: 40px" onclick="del()">C</button>
+            <button id="submitOp" style="width: 158px; height: 40px" onclick="toOp()">ENTER</button></div>
+            <hr><h2 id = "solTitle" style="visibility: hidden;">Your Solution:</h2>
+            <h4 id="eqnDisplay" style="visibility: hidden;">For: </h4>
+        <h3 id="solution" style="visibility: hidden;"> => </h3>
+        <script>
+            let inputtxt = "";
+            // GENERALIZED ADDEVENTLISTENER FUNCTION FOR EASE - IS ALSO BUTTON FUNCTION 
+            function typein(change) {
+                inputtxt += change;
+                document.getElementById("eqnInput").innerText = inputtxt;
+            }
+            // NOW THE BUTTON FUNCTIONS, I GENERALIZED INPUT TYPE FUNCTIONS FOR EASE 
+            function del() {
+                document.getElementById("solTitle").style.visibility = "hidden";
+                document.getElementById("eqnDisplay").innerHTML = "For: ";
+                document.getElementById("eqnDisplay").style.visibility = "hidden";
+                document.getElementById("solution").innerHTML = " => ";
+                document.getElementById("solution").style.visibility = "hidden";
+                inputtxt = "";
+                document.getElementById("eqnInput").innerText = inputtxt;
+            }
+            function backspace() {
+                inputtxt = inputtxt.slice(0,-1);
+                document.getElementById("eqnInput").innerText = inputtxt;
+
+            }
+            function toOp() {
+                document.getElementById("solTitle").style.visibility = "visible";
+                document.getElementById("eqnDisplay").style.visibility = "visible";
+                document.getElementById("solution").style.visibility = "visible";
+                document.getElementById("eqnDisplay").innerText += " " + inputtxt;
+                document.getElementById("solution").innerText += " " + eval(inputtxt);
+            }
+        </script>
+    </body>
+</html>
